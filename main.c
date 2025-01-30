@@ -30,9 +30,14 @@ int main(int argc, char **argv)
 		ft_printf("%s", gm->map[y]);
 		y++;
 	}
+	gm->mlx = mlx_init();
 	if(!(gm->mlx))
 		error_detected("fail when init mlx",gm);
-	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x*320), (gm->size_y)*320, "prueba");
+	ft_image(gm);
+	mlx_get_screen_size(gm->mlx, &gm->size_x, &gm->size_y);
+	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x), (gm->size_y), "prueba");
+	ft_printf("%s", "hola");
+
 	
     
 }

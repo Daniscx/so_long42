@@ -62,6 +62,7 @@ int main(int argc, char **argv);
 void ft_extracting(char *arg, t_info *gm);
 void error_detected(const char *error, t_info *gm);
 void checkmapping(t_info *gm);
+void	ft_image(t_info *gm);
 
 
 

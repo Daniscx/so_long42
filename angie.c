@@ -38,7 +38,7 @@ void checkmapping(t_info *gm)
         error_detected("Check the amount of players in the map", gm);
     if(ft_counter(gm->map , 'E') != 1)
         error_detected("Check the amount of exits in the map", gm);
-    if(gm->coins = ft_counter(gm->map , 'C') == 0)
+    if((gm->coins = ft_counter(gm->map , 'C')) == 0)
         error_detected("Check the amount of rings in the map", gm);
     ft_checkwalls(gm);
 }
@@ -96,4 +96,3 @@ static void ft_checkwalls(t_info *gm)
     }
     
 }
-static  void ft_
