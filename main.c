@@ -14,15 +14,17 @@
 int main(int argc, char **argv)
 {
     t_info   *gm;
+	t_sprite *sprite;
 	int y;
 
 	y = 0;
-  	gm = malloc(sizeof(t_info *));	
+	sprite = ft_init_image();
+		gm = ft_inicialitated();
 	if ( argc != 2)
     {
-        error_detected("Il n'est pas argumente", gm);
+        error_detected("Il n'est pas argumente", NULL);
         return(0);
-    }
+    }	
 	mapping(gm, argv[1]);
 	checkmapping(gm);
 	while(gm && gm->map[y])
@@ -33,7 +35,7 @@ int main(int argc, char **argv)
 	gm->mlx = mlx_init();
 	if(!(gm->mlx))
 		error_detected("fail when init mlx",gm);
-	ft_image(gm);
+	ft_image(gm, sprite);
 	mlx_get_screen_size(gm->mlx, &gm->size_x, &gm->size_y);
 	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x), (gm->size_y), "prueba");
 	ft_printf("%s", "hola");

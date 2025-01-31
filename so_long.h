@@ -27,7 +27,7 @@
 # define KEY_S				115
 # define KEY_D				100
 
-typedef struct  s_img
+typedef struct  s_sprite
 
 {
     void	*ply_front;
@@ -36,11 +36,11 @@ typedef struct  s_img
     void    *ply_back;
     void    *backgroung;
 	void	*exc0;
-  void  *exc1;
+  	void  *exc1;
 	void	*rings;
-  void  *wall;
+  	void  *wall;
 
-} t_img;
+} t_sprite;
 
 
 typedef struct s_info
@@ -51,7 +51,6 @@ typedef struct s_info
   int    size_x;
   int	p_y;
   int   p_x;
-  t_img  *sprite;
   void	*wnw;
   int	coins;
 
@@ -62,7 +61,9 @@ int main(int argc, char **argv);
 void ft_extracting(char *arg, t_info *gm);
 void error_detected(const char *error, t_info *gm);
 void checkmapping(t_info *gm);
-void	ft_image(t_info *gm);
+void ft_image(t_info *gm, t_sprite *sprite);
+t_info	*ft_inicialitated();
+t_sprite *ft_init_image();
 
 
 
