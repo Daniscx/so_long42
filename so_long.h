@@ -53,6 +53,7 @@ typedef struct s_info
   int   p_x;
   void	*wnw;
   int	coins;
+  t_sprite	*sprite;
 
 }   t_info;
 
@@ -61,9 +62,10 @@ int main(int argc, char **argv);
 void ft_extracting(char *arg, t_info *gm);
 void error_detected(const char *error, t_info *gm);
 void checkmapping(t_info *gm);
-void ft_image(t_info *gm, t_sprite *sprite);
+void ft_image(t_info *gm);
 t_info	*ft_inicialitated();
-t_sprite *ft_init_image();
+void	ft_createmap(t_info *gm);
+void	ft_putintowindos(t_info *gm, char c, int x, int y);
 
 
 

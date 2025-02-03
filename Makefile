@@ -18,6 +18,7 @@ CFILES = \
 		error.c\
 		mapping.c\
 		angie.c\
+		createmap.c\
 
 
 OBJECTS = $(CFILES:.c=.o)

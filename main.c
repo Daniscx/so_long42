@@ -14,12 +14,10 @@
 int main(int argc, char **argv)
 {
     t_info   *gm;
-	t_sprite *sprite;
 	int y;
 
 	y = 0;
-	sprite = ft_init_image();
-		gm = ft_inicialitated();
+	gm = ft_inicialitated();
 	if ( argc != 2)
     {
         error_detected("Il n'est pas argumente", NULL);
@@ -35,10 +33,9 @@ int main(int argc, char **argv)
 	gm->mlx = mlx_init();
 	if(!(gm->mlx))
 		error_detected("fail when init mlx",gm);
-	ft_image(gm, sprite);
-	mlx_get_screen_size(gm->mlx, &gm->size_x, &gm->size_y);
-	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x), (gm->size_y), "prueba");
-	ft_printf("%s", "hola");
+	ft_image(gm);
+	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x)*32, (gm->size_y)*32, "prueba");
+	ft_createmap(gm);
 
 	
     
