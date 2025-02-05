@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:07:59 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/05 18:57:54 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:11:19 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void ft_image(t_info *gm);
 t_info	*ft_inicialitated();
 void	ft_createmap(t_info *gm);
 void	ft_putintowindos(t_info *gm, char c, int x, int y);
+int	*keycontroller(int key, t_info *gm);
 
 
 

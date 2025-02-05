@@ -19,6 +19,7 @@ CFILES = \
 		mapping.c\
 		angie.c\
 		createmap.c\
+		playing.c\
 
 
 OBJECTS = $(CFILES:.c=.o)

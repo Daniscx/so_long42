@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:42 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/05 18:55:57 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:10:49 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,5 @@ int main(int argc, char **argv)
 	ft_image(gm);
 	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x - 1)*32, (gm->size_y)*32, "prueba");
 	ft_createmap(gm);
-	mlx_key_hook(gm->wnw,key_user(),gm)
-
-	
-
-	
-    
+	mlx_key_hook(gm->wnw,keycontroller(argc,gm),gm);
 }
