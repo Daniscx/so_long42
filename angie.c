@@ -26,9 +26,9 @@ void checkmapping(t_info *gm)
     while(gm->map[y] )
     {
         x = 0;
-        while(gm->map[y][x]&& x < gm->size_x - 1)
+        while(gm->map[y][x]&& x < gm->size_x - 2)
         {
-            if(!ft_strchr("10CPE", gm->map[x][y]))
+            if(!ft_strchr("10CPE", gm->map[y][x]))
                 error_detected("il n'est pas  usable sprite", gm);
             x++;
         }

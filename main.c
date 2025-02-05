@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
+/*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:42 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/01/30 17:41:24 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:55:57 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int main(int argc, char **argv)
 	if(!(gm->mlx))
 		error_detected("fail when init mlx",gm);
 	ft_image(gm);
-	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x)*32, (gm->size_y)*32, "prueba");
+	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x - 1)*32, (gm->size_y)*32, "prueba");
 	ft_createmap(gm);
+	mlx_key_hook(gm->wnw,key_user(),gm)
+
+	
 
 	
     

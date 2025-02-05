@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
+/*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:07:59 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/01/30 18:02:28 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:57:54 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # define  BACK_ROUND = 0
 
 # define ESC = 653607
-# define KEY_W				119
-# define KEY_A				97
-# define KEY_S				115
-# define KEY_D				100
+# define W				119
+# define A				97
+# define S				115
+# define D				100
 
 typedef struct  s_sprite
 
