@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 17:30:07 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/05 18:56:37 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:30:12 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ void	ft_putintowindos(t_info *gm, char c, int x, int y)
 		mlx_put_image_to_window(gm->mlx, gm->wnw, gm->sprite->wall, x*32, y*32);
 
 	if (c == 'E')
-		mlx_put_image_to_window(gm->mlx, gm->wnw, gm->sprite->exc0, x*32,y*32);
+		{
+			mlx_put_image_to_window(gm->mlx, gm->wnw, gm->sprite->exc0, x*32,y*32);
+			gm->e_y = y;
+			gm->e_x = x;
+		}
 }
 void	ft_image(t_info *gm)
 {
@@ -57,8 +61,6 @@ void	ft_image(t_info *gm)
 	int		weith;
 	int		hight;
 
-	weith = 0;
-	hight = 0;
 	path = "/home/dmaestro/so_long/textures/front_player.xpm";
 	gm->sprite->ply_front = mlx_xpm_file_to_image(gm->mlx, path, &weith,
 			&hight);

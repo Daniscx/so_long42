@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:04 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/05 18:56:32 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/12 20:20:04 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ void	ft_extracting(char *arg, t_info *gm)
 
 	fd = open(arg, O_RDONLY);
 	i = 0;
-	gm->map = ft_calloc(gm->size_y, sizeof(char *));
+	gm->map = ft_calloc(gm->size_y - 1 , sizeof(char *));
+	
+	while(gm->map[i])
+	{
+		gm->map[i] = NULL;
+		i++;
+	}
+	i = 0;
 	if (gm->map == NULL)
 		error_detected("mapping error", gm);
 	while ((gm->map[i] = get_next_line(fd)) != NULL)
@@ -48,7 +55,9 @@ void	ft_sizegt(char *arg, t_info *gm)
 		x += i;
 		gm->size_y++;
 		free(line);
+		line = NULL;
 	}
+	close(fd);
 
 	if (!(gm->size_x > gm->size_y) )
 		error_detected("It isnt a rectangle", gm);
@@ -59,7 +68,7 @@ t_sprite	*ft_init_image(void)
 {
 	t_sprite	*img;
 
-	img = malloc(9 * sizeof(t_sprite));
+	img = malloc(sizeof(t_sprite));
 	img->exc0 = NULL;
 	img->wall = NULL;
 	img->backgroung = NULL;
@@ -84,6 +93,8 @@ t_info	*ft_inicialitated(void)
 	gm->p_y = 0;
 	gm->wnw = NULL;
 	gm->sprite = ft_init_image();
+	gm->e_y = 0;
+	gm->e_x = 0;
 	return (gm);
 }
 

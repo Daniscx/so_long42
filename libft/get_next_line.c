@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
+/*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 02:25:32 by dmaestro          #+#    #+#             */
-/*   Updated: 2024/12/18 19:21:46 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:18:15 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_ssubstr(char *s)
 	i = 0;
 	if (!s)
 		return (NULL);
-	result = ft_calloc(ft_strlen(s), sizeof(char));
+	result = ft_caalloc(ft_strlen(s), sizeof(char));
 	if (!result)
 		return (NULL);
 	while (*s != '\0')

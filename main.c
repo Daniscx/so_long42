@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:42 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/05 20:10:49 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:53:38 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,18 @@ int main(int argc, char **argv)
 	gm = ft_inicialitated();
 	if ( argc != 2)
     {
-        error_detected("Il n'est pas argumente", NULL);
+        error_detected("Il n'est pas argumente",	gm);
         return(0);
     }	
 	mapping(gm, argv[1]);
 	checkmapping(gm);
-	while(gm && gm->map[y])
-	{
-		ft_printf("%s", gm->map[y]);
-		y++;
-	}
+
 	gm->mlx = mlx_init();
 	if(!(gm->mlx))
 		error_detected("fail when init mlx",gm);
 	ft_image(gm);
-	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x - 1)*32, (gm->size_y)*32, "prueba");
+	gm->wnw = mlx_new_window(gm->mlx, (gm->size_x - 1)*32, (gm->size_y)*32, "bebe toyota corolla");
 	ft_createmap(gm);
-	mlx_key_hook(gm->wnw,keycontroller(argc,gm),gm);
+	mlx_key_hook(gm->wnw,keycontroller,gm);
+	mlx_loop(gm->mlx);
 }
