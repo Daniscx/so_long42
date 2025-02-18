@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:04 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/12 20:20:04 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:51:35 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,11 @@ void	ft_extracting(char *arg, t_info *gm)
 
 	fd = open(arg, O_RDONLY);
 	i = 0;
-	gm->map = ft_calloc(gm->size_y - 1 , sizeof(char *));
-	
-	while(gm->map[i])
-	{
-		gm->map[i] = NULL;
-		i++;
-	}
-	i = 0;
+	gm->map = NULL;
+	gm->map = ft_calloc(gm->size_y, sizeof(char *));
 	if (gm->map == NULL)
 		error_detected("mapping error", gm);
-	while ((gm->map[i] = get_next_line(fd)) != NULL)
+	while ((gm->map[i] = get_next_line(fd)) != NULL && i < gm->size_y)
 		i++;
 	close(fd);
 }
@@ -67,7 +61,8 @@ void	ft_sizegt(char *arg, t_info *gm)
 t_sprite	*ft_init_image(void)
 {
 	t_sprite	*img;
-
+	
+	img = NULL;
 	img = malloc(sizeof(t_sprite));
 	img->exc0 = NULL;
 	img->wall = NULL;
@@ -83,7 +78,8 @@ t_sprite	*ft_init_image(void)
 t_info	*ft_inicialitated(void)
 {
 	t_info	*gm;
-
+	
+	gm = NULL;
 	gm = malloc(sizeof(t_info));
 	gm->map = NULL;
 	gm->size_x = 0;

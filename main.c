@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:42 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/12 18:53:38 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:12:16 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	int y;
 
 	y = 0;
+	gm = NULL;
 	gm = ft_inicialitated();
 	if ( argc != 2)
     {

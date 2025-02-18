@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:08:48 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/12 18:54:14 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:49:53 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ void checkmapping(t_info *gm)
 {
     int y;
     int x;
-    
+     x = 0;
+	 y = 0;
     if(!gm)
 		return;
 	y = 0;
     while(gm->map[y] )
     {
         x = 0;
-        while(gm->map[y][x]&& x < gm->size_x - 2)
+        while(gm->map[y][x]&& (x < gm->size_x - 2))
         {
             if(!ft_strchr("10CPE", gm->map[y][x]))
                 error_detected("il n'est pas  usable sprite", gm);
@@ -47,11 +48,11 @@ static int ft_counter(char **map, char c)
     int o;
     int y;
     char *p;
+	o = 0;
+	y = 0;
+	p = NULL;
     if(!map)
         return(0);
-  
-    y = 0;
-    o = 0;
     while(map[y])
     {   
         p = map[y];

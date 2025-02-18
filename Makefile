@@ -3,7 +3,7 @@ NAME = so_long
 
 CC = cc
 
-CFLAGS = -Wall -g
+CFLAGS = -Wall -Werror -Wextra -g
 
 LIBFT_PATH = libft/
 MLX_PATH = minilibx/minilibx-linux/

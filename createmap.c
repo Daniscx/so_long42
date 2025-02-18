@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 17:30:07 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/10 19:30:12 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:38:13 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_createmap(t_info *gm)
 
 void	ft_putintowindos(t_info *gm, char c, int x, int y)
 {
-	ft_printf("%shola","hola");
 	if(c != '1')
 		mlx_put_image_to_window(gm->mlx, gm->wnw, gm->sprite->backgroung,(x*32), (y*32));
 	if (c == 'P')

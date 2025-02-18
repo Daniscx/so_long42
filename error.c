@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:09:28 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/12 20:24:39 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:40:10 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	error_detected(const char *error, t_info *gm)
 	if (gm && gm->sprite)
 		destroyer(gm);
 	if (gm && gm->mlx)
-		free(gm->mlx);
+		{
+			free(gm->mlx);
+			mlx_destroy_display(gm->mlx);
+		}
 	if (gm)
 		free(gm);
 }
