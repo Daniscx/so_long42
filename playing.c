@@ -6,35 +6,44 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:10:22 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/12 20:28:34 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:55:59 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		ft_checkvalidpath(int x, t_info *gm);
-int		ft_look_to_the_next(char c, t_info *gm);
-int		move_gender(int x, t_info *gm);
-void	finish_game(t_info *gm, char c);
+static int		ft_checkvalidpath(int x, t_info *gm);
+static int		ft_look_to_the_next(char c, t_info *gm);
+static int		move_gender(int x, t_info *gm);
+static void	finish_game(t_info *gm, char c);
 
 int	keycontroller(int key, t_info *gm)
 {
-	int	i;
-
-	i = 1;
 	if (key == W)
-		move_gender(1, gm);
+	{
+			move_gender(1, gm);
+			ft_printf("%s", "↑");
+	}		
 	if (key == S)
-		move_gender(-1, gm);
+	{
+			move_gender(-1, gm);
+			ft_printf("%s", "↓");
+	}		
 	if (key == A)
-		move_gender(-2, gm);
+	{
+			move_gender(-2, gm);
+			ft_printf("%s", "←");
+	}		
 	if (key == D)
-		move_gender(2, gm);
-	if(key == ESC)
+	{
+			move_gender(2, gm);
+			ft_printf("%s", "→");
+	}		
+	if (key == ESC)
 		finish_game(gm, W);
-	return (i);
+	return (1);
 }
-int	move_gender(int x, t_info *gm)
+static int	move_gender(int x, t_info *gm)
 {
 	if (ft_checkvalidpath(x, gm) != 0)
 		return (0);
@@ -62,7 +71,7 @@ int	move_gender(int x, t_info *gm)
 	}
 	return (1);
 }
-int	ft_checkvalidpath(int x, t_info *gm)
+static int	ft_checkvalidpath(int x, t_info *gm)
 {
 	if (x == 1 && (gm->map[gm->p_y - 1][gm->p_x]) != '1')
 		return (ft_look_to_the_next(gm->map[gm->p_y - 1][gm->p_x], gm));
@@ -74,31 +83,31 @@ int	ft_checkvalidpath(int x, t_info *gm)
 		return (ft_look_to_the_next(gm->map[gm->p_y][gm->p_x - 1], gm));
 	return (1);
 }
-int	ft_look_to_the_next(char c, t_info *gm)
+static int	ft_look_to_the_next(char c, t_info *gm)
 {
-	ft_printf("%c", gm->map[gm->p_y][gm->p_x]);
 	if (c == 'C' && gm->coins != 0)
 		gm->coins--;
 	if (c == 'E' && gm->coins != 0)
 		return (1);
-	else if(c == 'E' && gm->coins == 0)
-		{
-			finish_game(gm, 'W');
-			return(0);
-		}
+	else if (c == 'E' && gm->coins == 0)
+	{
+		finish_game(gm, 'W');
+		return (0);
+	}
 	if (gm->coins == 0)
 		mlx_put_image_to_window(gm->mlx, gm->wnw, gm->sprite->exc1, gm->e_x
 			* 32, gm->e_y * 32);
 	gm->map[gm->p_y][gm->p_x] = '0';
 	return (0);
 }
-void	finish_game(t_info *gm, char c)
+static void	finish_game(t_info *gm, char c)
 {
-	
 	mlx_loop_end(gm->mlx);
 	mlx_clear_window(gm->mlx, gm->wnw);
-	mlx_destroy_window(gm->mlx, gm->wnw);	
-	ft_printf("%s",
-																																																																																												"----------------------------------------\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|                                      |\n--------------------------------");
-	error_detected("you escaped with the TOYOTA COROLLA DO YOU WANNA RUN IN THE 90'S AGAIN?",gm);																																																																																										
+	mlx_destroy_window(gm->mlx, gm->wnw);
+	if (c == 'W')
+		ft_printf("%s",
+																																																																																													"----------------------------------------\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|										|\n|                                      |\n--------------------------------");
+	error_detected("you escaped with the TOYOTA COROLLA DO YOU WANNA RUN IN THE 90'S AGAIN?",
+		gm);
 }

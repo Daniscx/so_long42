@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:04 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/18 19:51:35 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:40:56 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	ft_extracting(char *arg, t_info *gm)
 	int	i;
 	int	fd;
 
+	if (!gm)
+		return ;
 	fd = open(arg, O_RDONLY);
 	i = 0;
 	gm->map = NULL;
-	gm->map = ft_calloc(gm->size_y, sizeof(char *));
+	gm->map = ft_calloc(gm->size_y + 1, sizeof(char *));
 	if (gm->map == NULL)
 		error_detected("mapping error", gm);
 	while ((gm->map[i] = get_next_line(fd)) != NULL && i < gm->size_y)
@@ -34,7 +36,6 @@ void	ft_sizegt(char *arg, t_info *gm)
 	int		i;
 	int		x;
 
-	line = NULL;
 	x = 0;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -52,16 +53,14 @@ void	ft_sizegt(char *arg, t_info *gm)
 		line = NULL;
 	}
 	close(fd);
-
-	if (!(gm->size_x > gm->size_y) )
+	if (gm->sprite != NULL && (gm->size_x > gm->size_y))
 		error_detected("It isnt a rectangle", gm);
-		
 }
 
 t_sprite	*ft_init_image(void)
 {
 	t_sprite	*img;
-	
+
 	img = NULL;
 	img = malloc(sizeof(t_sprite));
 	img->exc0 = NULL;
@@ -78,7 +77,7 @@ t_sprite	*ft_init_image(void)
 t_info	*ft_inicialitated(void)
 {
 	t_info	*gm;
-	
+
 	gm = NULL;
 	gm = malloc(sizeof(t_info));
 	gm->map = NULL;
@@ -94,11 +93,12 @@ t_info	*ft_inicialitated(void)
 	return (gm);
 }
 
-
 void	mapping(t_info *gm, char *arg)
 {
 	if (ft_strncmp(arg + ft_strlen(arg) - 4, ".ber", 4) != 0)
 		error_detected("Le type pour le fd il n'est\n", gm);
+	if (gm->sprite == NULL)
+		return ;
 	ft_sizegt(arg, gm);
 	ft_extracting(arg, gm);
 	if (gm->map == NULL)

@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:09:28 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/18 19:40:10 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:27:28 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	free_double_pointer(char **map)
 	y = 0;
 	while (map[y])
 		y++;
+	y--;
 	while (y >= 0)
 	{
 		free(map[y]);
@@ -39,14 +40,15 @@ void	error_detected(const char *error, t_info *gm)
 	if (gm && gm->sprite)
 		destroyer(gm);
 	if (gm && gm->mlx)
-		{
-			free(gm->mlx);
-			mlx_destroy_display(gm->mlx);
-		}
+	{
+		mlx_destroy_display(gm->mlx);
+		free(gm->mlx);
+	}
 	if (gm)
 		free(gm);
+	gm = NULL;
 }
-static	void	destroyer(t_info *gm)
+static void	destroyer(t_info *gm)
 {
 	if (!gm->sprite)
 		return ;
@@ -69,5 +71,5 @@ static	void	destroyer(t_info *gm)
 	if (gm->sprite->exc0)
 		mlx_destroy_image(gm->mlx, gm->sprite->exc0);
 	free(gm->sprite);
+	gm->sprite = NULL;
 }
-
