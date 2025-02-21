@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:08:48 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/19 19:38:35 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:55:38 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_checkwalls(t_info *gm);
 static int	ft_counter(char **map, char c, t_info *gm);
-static void	ft_posible_exit(char **map, t_info *gm, int y, int x);
+static void	ft_posible_exit(t_info *gm, int y, int x);
 static void	colums(t_info *gm, int y);
 
 void	checkmapping(t_info *gm)
@@ -43,7 +43,7 @@ void	checkmapping(t_info *gm)
 	ft_counter(gm->map, 'E', gm);
 	ft_counter(gm->map, 'P', gm);
 	ft_checkwalls(gm);
-	ft_posible_exit(gm->map, gm, gm->p_y, gm->p_x);
+	ft_posible_exit(gm, gm->p_y, gm->p_x);
 }
 
 static int	ft_counter(char **map, char c, t_info *gm)
@@ -64,7 +64,7 @@ static int	ft_counter(char **map, char c, t_info *gm)
 		{
 			o++;
 			p = ft_strchr(p, c) + 1;
-			gm->p_x = p - gm->map[y] ;
+			gm->p_x = p - gm->map[y];
 			gm->p_y = y;
 		}
 		y++;
@@ -110,25 +110,32 @@ static void	colums(t_info *gm, int y)
 		y++;
 	}
 }
-static void	ft_posible_exit(char **map, t_info *gm, int y, int x)
+static void	ft_posible_exit(t_info *gm, int y, int x)
 {
 	int	i;
 
 	i = gm->coins;
-	if (gm->map[y][x] == '1' || gm->map[y][x] == 'E' || gm->map[y][x] == 'o')
+	if (gm->map[y][x] == '1' || gm->map[y][x] == 'E' || gm->map[y][x] == 'o'
+		|| gm->map[y][x] == 'i')
 		return ;
-	if (map[y][x] == 'C')
+	if (gm->map[y][x] == 'C')
+	{
 		gm->coins--;
-	gm->map[y][x] = 'o';
-	ft_posible_exit(map, gm, y + 1, x);
-	ft_posible_exit(map, gm, y - 1, x);
-	ft_posible_exit(map, gm, y, x + 1);
-	ft_posible_exit(map, gm, y, x - 1);
+		gm->map[y][x] = 'i';
+	}
+	else
+		gm->map[y][x] = 'o';
+	ft_posible_exit(gm, y + 1, x);
+	ft_posible_exit(gm, y - 1, x);
+	ft_posible_exit(gm, y, x + 1);
+	ft_posible_exit(gm, y, x - 1);
 	if (x == gm->p_x && y == gm->p_y && gm->coins != 0)
 		error_detected("the baby can't scape cheeater", gm);
 	else if (x == gm->p_x && y == gm->p_y && gm->coins == 0)
 	{
 		gm->coins = i;
-		gm->map = map;
+		get_the_original(gm, 'o');
+		get_the_original(gm, 'i');
 	}
 }
+

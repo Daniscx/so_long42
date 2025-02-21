@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:42 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/19 18:27:34 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:43:53 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ int	main(int argc, char **argv)
 	ft_createmap(gm);
 	mlx_key_hook(gm->wnw, keycontroller, gm);
 	mlx_loop(gm->mlx);
+	free(gm);
+	return (1);
 }

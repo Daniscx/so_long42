@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:04 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/19 19:40:56 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:45:37 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ void	ft_extracting(char *arg, t_info *gm)
 	gm->map = ft_calloc(gm->size_y + 1, sizeof(char *));
 	if (gm->map == NULL)
 		error_detected("mapping error", gm);
-	while ((gm->map[i] = get_next_line(fd)) != NULL && i < gm->size_y)
+	while ( i < gm->size_y)
+	{
+		gm->map[i] = get_next_line(fd);
 		i++;
+	}
 	close(fd);
 }
 void	ft_sizegt(char *arg, t_info *gm)
@@ -53,7 +56,7 @@ void	ft_sizegt(char *arg, t_info *gm)
 		line = NULL;
 	}
 	close(fd);
-	if (gm->sprite != NULL && (gm->size_x > gm->size_y))
+	if ((gm->size_x <= gm->size_y))
 		error_detected("It isnt a rectangle", gm);
 }
 

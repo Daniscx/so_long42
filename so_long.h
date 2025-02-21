@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:07:59 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/12 20:28:51 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:11:41 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define EXIT = E
 # define BACK_ROUND = 0
 
-# define ESC  653607
+# define ESC 27
 # define W 119
 # define A 97
 # define S 115
@@ -68,5 +68,7 @@ t_info			*ft_inicialitated(void);
 void			ft_createmap(t_info *gm);
 void			ft_putintowindos(t_info *gm, char c, int x, int y);
 int				keycontroller(int key, t_info *gm);
+void	free_double_pointer(char **map);
+void	get_the_original(t_info *gm, char c);
 
 #endif
