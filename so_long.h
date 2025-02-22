@@ -6,14 +6,14 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:07:59 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/21 19:11:41 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:16:59 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "libft/libft.h"
-# include "minilibx/minilibx-linux/mlx.h"
+# include "minilibx/mlx.h"
 
 # define WALL = 1
 # define COINS = C
@@ -21,7 +21,7 @@
 # define EXIT = E
 # define BACK_ROUND = 0
 
-# define ESC 27
+# define ESC 0xFF1B
 # define W 119
 # define A 97
 # define S 115

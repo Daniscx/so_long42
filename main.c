@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:42 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/21 19:43:53 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:49:38 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_info	*gm;
-	int		y;
 
-	y = 0;
 	gm = NULL;
 	gm = ft_inicialitated();
 	if (argc != 2)
@@ -26,11 +24,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	mapping(gm, argv[1]);
-	if (gm->sprite == NULL)
-		return (0);
 	checkmapping(gm);
-	if (gm->sprite == NULL)
-		return (0);
 	gm->mlx = mlx_init();
 	if (!(gm->mlx))
 		error_detected("fail when init mlx", gm);
@@ -40,6 +34,5 @@ int	main(int argc, char **argv)
 	ft_createmap(gm);
 	mlx_key_hook(gm->wnw, keycontroller, gm);
 	mlx_loop(gm->mlx);
-	free(gm);
 	return (1);
 }

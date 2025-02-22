@@ -6,10 +6,9 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 
 LIBFT_PATH = libft/
-MLX_PATH = minilibx/minilibx-linux/
-
+MLX_PATH = minilibx/
 MLX_LIB = $(MLX_PATH)libmlx.a
-MLX_FLAGS = -Lminilibx/minilibx-linux -lmlx -lX11 -lXext -lXrender -lbsd -lm -g
+MLX_FLAGS = -Lminilibx -lmlx -lX11 -lXext -lXrender -lbsd -lm -g
 LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 

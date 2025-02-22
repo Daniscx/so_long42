@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:09:28 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/21 19:20:46 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:48:00 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	error_detected(const char *error, t_info *gm)
 		mlx_destroy_display(gm->mlx);
 		free(gm->mlx);
 	}
+	free(gm);
+	exit(0);
 }
 static void	destroyer(t_info *gm)
 {

@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:04 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/21 18:45:37 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:22:27 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	ft_extracting(char *arg, t_info *gm)
 	gm->map = ft_calloc(gm->size_y + 1, sizeof(char *));
 	if (gm->map == NULL)
 		error_detected("mapping error", gm);
-	while ( i < gm->size_y)
+	while (i < gm->size_y)
 	{
 		gm->map[i] = get_next_line(fd);
 		i++;
 	}
 	close(fd);
 }
+
 void	ft_sizegt(char *arg, t_info *gm)
 {
 	int		fd;
@@ -43,7 +44,8 @@ void	ft_sizegt(char *arg, t_info *gm)
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		error_detected("il n'est pas fd", gm);
-	while (((line = get_next_line(fd))) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		i = 0;
 		while (line[i])
@@ -53,10 +55,10 @@ void	ft_sizegt(char *arg, t_info *gm)
 		x += i;
 		gm->size_y++;
 		free(line);
-		line = NULL;
+		line = get_next_line(fd);
 	}
 	close(fd);
-	if ((gm->size_x <= gm->size_y))
+	if ((gm->size_x <= gm->size_y) || ((x + 1 )/ gm->size_y != gm->size_x))
 		error_detected("It isnt a rectangle", gm);
 }
 
@@ -77,6 +79,7 @@ t_sprite	*ft_init_image(void)
 	img->exc1 = NULL;
 	return (img);
 }
+
 t_info	*ft_inicialitated(void)
 {
 	t_info	*gm;
