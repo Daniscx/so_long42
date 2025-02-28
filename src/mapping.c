@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:17:04 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/22 20:22:27 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:04:20 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,45 +58,26 @@ void	ft_sizegt(char *arg, t_info *gm)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if ((gm->size_x <= gm->size_y) || ((x + 1 )/ gm->size_y != gm->size_x))
+	if ((gm->size_x <= gm->size_y) || ((x + 1) / gm->size_y != gm->size_x))
 		error_detected("It isnt a rectangle", gm);
 }
 
-t_sprite	*ft_init_image(void)
+int	ft_geometrical(t_info *gm)
 {
-	t_sprite	*img;
+	size_t	i;
+	int		j;
 
-	img = NULL;
-	img = malloc(sizeof(t_sprite));
-	img->exc0 = NULL;
-	img->wall = NULL;
-	img->backgroung = NULL;
-	img->rings = NULL;
-	img->ply_right = NULL;
-	img->ply_left = NULL;
-	img->ply_front = NULL;
-	img->ply_back = NULL;
-	img->exc1 = NULL;
-	return (img);
-}
-
-t_info	*ft_inicialitated(void)
-{
-	t_info	*gm;
-
-	gm = NULL;
-	gm = malloc(sizeof(t_info));
-	gm->map = NULL;
-	gm->size_x = 0;
-	(gm->mlx) = NULL;
-	gm->size_y = 0;
-	gm->p_x = 0;
-	gm->p_y = 0;
-	gm->wnw = NULL;
-	gm->sprite = ft_init_image();
-	gm->e_y = 0;
-	gm->e_x = 0;
-	return (gm);
+	j = 0;
+	i = ft_strlen(gm->map[0]);
+	while (gm->map[j + 1])
+	{
+		if (i != ft_strlen(gm->map[j]))
+			error_detected("it isnt geometrical", gm);
+		j++;
+	}
+	if (i - 1 != ft_strlen(gm->map[j]))
+		error_detected("it isnt geometrical", gm);
+	return (1);
 }
 
 void	mapping(t_info *gm, char *arg)
@@ -109,4 +90,5 @@ void	mapping(t_info *gm, char *arg)
 	ft_extracting(arg, gm);
 	if (gm->map == NULL)
 		error_detected("mappicitation il n'est pas bian estructuré\nº", gm);
+	ft_geometrical(gm);
 }

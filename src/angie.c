@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:08:48 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/21 18:55:38 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/03/01 00:47:26 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	checkmapping(t_info *gm)
 		while (gm->map[y][x] && (x < gm->size_x - 2))
 		{
 			if (!ft_strchr("10CPE", gm->map[y][x]))
-				error_detected("il n'est pas  usable sprite", gm);
+				error_detected("check the elements of the map", gm);
 			x++;
 		}
 		y++;
 	}
-	if ((gm->coins = ft_counter(gm->map, 'C', gm)) == 0)
+	if ((ft_counter(gm->map, 'C', gm)) == 0)
 		error_detected("Check the amount of rings in the map", gm);
 	ft_counter(gm->map, 'E', gm);
 	ft_counter(gm->map, 'P', gm);
@@ -54,7 +54,6 @@ static int	ft_counter(char **map, char c, t_info *gm)
 
 	o = 0;
 	y = 0;
-	p = NULL;
 	if (!map)
 		return (0);
 	while (map[y])
@@ -71,6 +70,8 @@ static int	ft_counter(char **map, char c, t_info *gm)
 	}
 	if ((c == 'P' || c == 'E') && o != 1)
 		error_detected("check the amount of players or exits please", gm);
+	if (c == 'C')
+		gm->coins = o;
 	return (o);
 }
 
@@ -97,6 +98,7 @@ static void	ft_checkwalls(t_info *gm)
 		x++;
 	}
 }
+
 static void	colums(t_info *gm, int y)
 {
 	if (gm->sprite == NULL)
@@ -110,6 +112,7 @@ static void	colums(t_info *gm, int y)
 		y++;
 	}
 }
+
 static void	ft_posible_exit(t_info *gm, int y, int x)
 {
 	int	i;
@@ -134,8 +137,7 @@ static void	ft_posible_exit(t_info *gm, int y, int x)
 	else if (x == gm->p_x && y == gm->p_y && gm->coins == 0)
 	{
 		gm->coins = i;
-		get_the_original(gm, 'o');
-		get_the_original(gm, 'i');
+		get_the_original(gm, 'o', '0');
+		get_the_original(gm, 'i', 'C');
 	}
 }
-

@@ -6,21 +6,16 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:07:59 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/22 20:16:59 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:43:22 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "libft/libft.h"
-# include "minilibx/mlx.h"
+# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
 
-# define WALL = 1
-# define COINS = C
-# define PLAYER = P
-# define EXIT = E
-# define BACK_ROUND = 0
-
+# define X 17
 # define ESC 0xFF1B
 # define W 119
 # define A 97
@@ -28,7 +23,6 @@
 # define D 100
 
 typedef struct s_sprite
-
 {
 	void		*ply_front;
 	void		*ply_left;
@@ -39,7 +33,6 @@ typedef struct s_sprite
 	void		*exc1;
 	void		*rings;
 	void		*wall;
-
 }				t_sprite;
 
 typedef struct s_info
@@ -55,6 +48,7 @@ typedef struct s_info
 	int			e_x;
 	int			e_y;
 	t_sprite	*sprite;
+	int			posible;
 
 }				t_info;
 
@@ -64,11 +58,13 @@ void			ft_extracting(char *arg, t_info *gm);
 void			error_detected(const char *error, t_info *gm);
 void			checkmapping(t_info *gm);
 void			ft_image(t_info *gm);
-t_info			*ft_inicialitated(void);
 void			ft_createmap(t_info *gm);
 void			ft_putintowindos(t_info *gm, char c, int x, int y);
 int				keycontroller(int key, t_info *gm);
-void	free_double_pointer(char **map);
-void	get_the_original(t_info *gm, char c);
+void			free_double_pointer(char **map);
+void			get_the_original(t_info *gm, char c, char old);
+int				finish_game(t_info *gm, char c);
+int				comprobation(t_info *gm);
+int				exit2(t_info *gm);
 
 #endif

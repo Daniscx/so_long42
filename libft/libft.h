@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
+/*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 16:13:33 by dmaestro          #+#    #+#             */
-/*   Updated: 2024/12/18 20:15:53 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/03/01 00:50:57 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <fcntl.h>
+# include <stdarg.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdarg.h>
-# include <fcntl.h>
-# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
-#  endif
-
+# endif
 
 typedef struct s_list
 {
@@ -70,19 +69,19 @@ int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 
-int	ft_printf(char const *str, ...);
-int	ft_putchar(int pf);
-int	ft_putstr(char *str);
-int	ft_putnb(int pf);
-int	ft_puthexnum(unsigned int pf);
-int	ft_puthexnumax(unsigned int pf);
-int	ft_putunmath(unsigned int pf);
-int	ft_putpointer(void *pf);
-int	ft_selector(va_list pf, char const *str);
-char	*get_next_line(int fd);
-char	*ft_sstrchr(char *s, int j);
-void	*ft_caalloc(size_t nmbr, size_t sz);
-char	*ft_sstrjoin(char *fv, char *s);
-int		ft_sstrlen(char *ret);
+int					ft_printf(char const *str, ...);
+int					ft_putchar(int pf);
+int					ft_putstr(char *str);
+int					ft_putnb(int pf);
+int					ft_puthexnum(unsigned int pf);
+int					ft_puthexnumax(unsigned int pf);
+int					ft_putunmath(unsigned int pf);
+int					ft_putpointer(void *pf);
+int					ft_selector(va_list pf, char const *str);
+char				*get_next_line(int fd);
+char				*ft_sstrchr(char *s, int j);
+void				*ft_caalloc(size_t nmbr, size_t sz);
+char				*ft_sstrjoin(char *fv, char *s);
+int					ft_sstrlen(char *ret);
 
 #endif

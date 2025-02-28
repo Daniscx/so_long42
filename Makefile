@@ -2,23 +2,22 @@
 NAME = so_long
 
 CC = cc
-
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -I inc/ -Wall -Werror -Wextra 
 
 LIBFT_PATH = libft/
 MLX_PATH = minilibx/
 MLX_LIB = $(MLX_PATH)libmlx.a
-MLX_FLAGS = -Lminilibx -lmlx -lX11 -lXext -lXrender -lbsd -lm -g
+MLX_FLAGS = -Lminilibx -lmlx -lX11 -lXext -lXrender -lbsd -lm 
 LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 
 CFILES = \
-		main.c\
-		error.c\
-		mapping.c\
-		angie.c\
-		createmap.c\
-		playing.c\
+		src/main.c\
+		src/error.c\
+		src/mapping.c\
+		src/angie.c\
+		src/createmap.c\
+		src/playing.c\
 
 
 OBJECTS = $(CFILES:.c=.o)
@@ -43,6 +42,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette libft initializer.c key_hook.c map.c move.c validate_input.c place_images.c main.c so_long.h victory.c helpers.c
+	norminette libft/ src/ inc/
 
 .PHONY: all clean fclean re norm

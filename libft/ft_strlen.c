@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
+/*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:08:34 by dmaestro          #+#    #+#             */
-/*   Updated: 2024/12/18 20:29:42 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/03/01 00:53:16 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-	if(!str)
-		return(0);
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i] != '\0')
 	{

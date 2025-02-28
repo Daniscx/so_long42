@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:09:28 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/22 19:48:00 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:03:45 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_double_pointer(char **map)
 	}
 	free(map);
 }
+
 void	error_detected(const char *error, t_info *gm)
 {
 	ft_printf("%s", error);
@@ -46,6 +47,7 @@ void	error_detected(const char *error, t_info *gm)
 	free(gm);
 	exit(0);
 }
+
 static void	destroyer(t_info *gm)
 {
 	if (!gm->sprite)
@@ -71,18 +73,14 @@ static void	destroyer(t_info *gm)
 	free(gm->sprite);
 	gm->sprite = NULL;
 }
-void	get_the_original(t_info *gm, char c)
+
+void	get_the_original(t_info *gm, char c, char old)
 {
-	char	old;
-	int		i;
-	int		x;
+	int	i;
+	int	x;
 
 	i = 0;
 	x = 0;
-	if (c == 'i')
-		old = 'C';
-	else if (c == 'o')
-		old = '0';
 	gm->map[gm->p_y][gm->p_x] = 'P';
 	while (gm->map[i])
 	{
@@ -90,9 +88,37 @@ void	get_the_original(t_info *gm, char c)
 		while (gm->map[i][x])
 		{
 			if (gm->map[i][x] == c)
+			{
 				gm->map[i][x] = old;
+				if (gm->map[i + 1][x] == 'E' || gm->map[i - 1][x] == 'E'
+					|| gm->map[i][x + 1] == 'E' || gm->map[i][x - 1] == 'E')
+					gm->posible = 1;
+			}
 			x++;
 		}
 		i++;
 	}
+}
+
+int	comprobation(t_info *gm)
+{
+	if (!gm->sprite->backgroung)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->wall)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->rings)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->ply_front)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->ply_back)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->ply_left)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->ply_right)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->exc1)
+		error_detected(" some sprite is missing, please check it out", gm);
+	if (!gm->sprite->exc0)
+		error_detected(" some sprite is missing, please check it out", gm);
+	return (1);
 }

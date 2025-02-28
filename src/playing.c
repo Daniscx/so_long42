@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:10:22 by dmaestro          #+#    #+#             */
-/*   Updated: 2025/02/22 20:00:24 by dmaestro         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:04:04 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,18 @@
 static int	ft_checkvalidpath(int x, t_info *gm);
 static int	ft_look_to_the_next(char c, t_info *gm);
 static int	move_gender(int x, t_info *gm);
-static void	finish_game(t_info *gm, char c);
 
 int	keycontroller(int key, t_info *gm)
 {
 	if (key == W)
-	{
 		move_gender(1, gm);
-		ft_printf("%s", "↑");
-	}
 	if (key == S)
-	{
 		move_gender(-1, gm);
-		ft_printf("%s", "↓");
-	}
 	if (key == A)
-	{
 		move_gender(-2, gm);
-		ft_printf("%s", "←");
-	}
 	if (key == D)
-	{
 		move_gender(2, gm);
-		ft_printf("%s", "→");
-	}
-	if (key == ESC)
+	if (key == ESC || key == X)
 		finish_game(gm, 'L');
 	return (1);
 }
@@ -88,11 +75,14 @@ static int	ft_checkvalidpath(int x, t_info *gm)
 
 static int	ft_look_to_the_next(char c, t_info *gm)
 {
+	static int	i = 1;
+
 	if (c == 'C' && gm->coins != 0)
 		gm->coins--;
 	if (c == 'E' && gm->coins != 0)
 		return (1);
-	else if (c == 'E' && gm->coins == 0)
+	ft_printf("Moves:%i\n", i++);
+	if (c == 'E' && gm->coins == 0)
 	{
 		finish_game(gm, 'W');
 		return (0);
@@ -104,7 +94,7 @@ static int	ft_look_to_the_next(char c, t_info *gm)
 	return (0);
 }
 
-static void	finish_game(t_info *gm, char c)
+int	finish_game(t_info *gm, char c)
 {
 	mlx_loop_end(gm->mlx);
 	mlx_clear_window(gm->mlx, gm->wnw);
@@ -115,9 +105,11 @@ static void	finish_game(t_info *gm, char c)
 		error_detected("YOU ESCAPED!,DO YOU WANNA RUN IN THE 90'S AGAIN?\n",
 			gm);
 	}
+	c = 'L';
 	if (c == 'L')
 	{
 		ft_printf("%s\n", "YOU LOOOOOSE");
 		error_detected("very very bad dou you wanna try a easiest map?\n", gm);
 	}
+	return (1);
 }
